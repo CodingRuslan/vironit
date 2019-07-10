@@ -18,10 +18,19 @@ EventEmitter.prototype.on = function(eventName, listener) {
   }
 }
 
-EventEmitter.prototype.remove = function(eventName) {
-  this._map.delete(eventName);
+EventEmitter.prototype.removeListener = function(eventName, listener) {
+  const listeners = this._map.get(eventName);
+  this._map.set(eventName, listeners.filter(e => e !== listener));
 }
 
 const ee = new EventEmitter();
-ee.on('hi', (name) => console.log(`Hi ${name}`));
-ee.emit('hi', "Someone");
+
+function someListener(...args) {
+  console.log("Hi", ...args)
+}
+
+ee.on('hi', someListener);
+ee.emit('hi', "Someone", "lol");
+
+ee.removeListener("hi", someListener)
+ee.emit('hi', "Someone", "lol");
