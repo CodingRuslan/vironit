@@ -3,12 +3,17 @@ function B() {
 }
 
 function inherit(parrentObj, childObj) {
-  return function() {
+  childObj.prototype = Object.create(parrentObj.prototype)
+  childObj.prototype.constructor = childObj; 
+
+  function newConstructor() {
     parrentObj.apply(this, arguments);
     for(let key in childObj) {
       this[key] = childObj[key];
     }
   }
+
+  return newConstructor
 }
  
 const F = inherit(B, {
@@ -23,4 +28,3 @@ const F = inherit(B, {
   const f = new F();
   console.log(f)
   console.log(f.getCounter()) // 0;
-  console.log(f.constructor())
