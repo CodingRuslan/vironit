@@ -1,7 +1,3 @@
-function B() {
-	this.counter = 0;
-}
-
 function inherit(parrentObj, proto) {
   const { constructor, ...prototype} = proto;
   function newConstructor() {
@@ -18,15 +14,4 @@ function inherit(parrentObj, proto) {
   return newConstructor
 }
  
-const F = inherit(B, {
-  constructor: function() {
-   this.name = "foo";
-  },
-  getCounter: function() {
-    return this.counter;
-  },
-});
-  
-  const f = new F();
-  console.log(f)
-  console.log(f.getCounter()) // 0;
+module.exports = inherit;
