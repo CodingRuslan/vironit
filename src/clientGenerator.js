@@ -1,8 +1,8 @@
-const {...ingridients} = require('./Ingridients')
+const {...ingredients} = require('./Ingredients')
 
-function clientGenerator(name) {
-  this.name = name;
-  this.order = ingridients[1]; // Ingridients { name: 'chicken', timeCook: 4 }
+function clientGenerator(clientName) {
+  this.clientName = clientName;
+  this.order =[ingredients[1], ingredients[2]]; // Ingredients [{ name: 'chicken', timeCook: 4 }, Ingredients("pepperoni", 3);]
 
   this.getIngr = function() {
     return this.order
