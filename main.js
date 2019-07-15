@@ -10,9 +10,11 @@ const clientConstructor = inherit(EventEmitter, Client);
 const Cooker = new CookerGenerator();
 const CookerConstructor = inherit(EventEmitter, Cooker);
 const chef = new CookerConstructor();
-// chef.clientName = "bob"
-// chef.clientName = "jon"
-// console.log(chef)
+
+// setTimeout(function run() {
+//   func(i);
+//   setTimeout(run, 100);
+// }, 100);
 
 //SetTimeOut{
   const bob = new clientConstructor("Bob"); // приходит клиент
