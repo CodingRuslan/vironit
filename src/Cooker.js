@@ -9,7 +9,6 @@ function Cooker(clientName, ingredient) {
       resultTime += element.timeCook
     });
 
-    //setTimeout(resultTime, resultTime)
     return resultTime;
   }
 }
