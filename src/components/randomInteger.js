@@ -4,4 +4,4 @@ function randomInteger(min, max) {
   return rand;
 }
 
-module.exports = randomInteger;
+export default randomInteger;

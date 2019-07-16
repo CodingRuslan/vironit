@@ -14,4 +14,4 @@ function inherit(parrentObj, proto) {
   return newConstructor
 }
  
-module.exports = inherit;
+export default inherit;

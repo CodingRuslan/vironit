@@ -1,5 +1,5 @@
-const {...ingredients} = require('./Ingredients');
-const randomInteger = require('./randomInteger');
+import ingredients from './Ingredients';
+import randomInteger from './randomInteger';
 
 function clientGenerator(clientName) {
   this.clientName = clientName;
@@ -10,4 +10,4 @@ function clientGenerator(clientName) {
   }
 }
 
-module.exports = clientGenerator;
+export default clientGenerator;

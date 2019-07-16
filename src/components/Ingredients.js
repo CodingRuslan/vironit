@@ -10,4 +10,5 @@ const pineapple = new Ingredients("pineapple", 2);
 const cheese = new Ingredients("cheese", 1);
 
 const ingredientsContainer = new Array(base, chicken, pepperoni, pineapple,cheese);
-module.exports = ingredientsContainer;
+
+export default ingredientsContainer;

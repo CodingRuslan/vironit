@@ -1,8 +1,11 @@
-const inherit = require('./src/inherit');
-const EventEmitter = require('./src/EventEmitter');
-const clientGenerator = require('./src/clientGenerator');
-const CookerGenerator = require('./src/Cooker');
-const randomInteger = require('./src/randomInteger')
+import inherit from './components/inherit';
+import EventEmitter from './components/EventEmitter';
+import clientGenerator from './components/clientGenerator';
+import CookerGenerator from './components/Cooker';
+import randomInteger from './components/randomInteger';
+import render from './components/render';
+
+document.body.appendChild(render());
 
 const clientContainer = [];
 let id = 1;

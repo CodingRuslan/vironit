@@ -13,4 +13,4 @@ function Cooker(clientName, ingredient) {
   }
 }
 
-module.exports = Cooker;
+export default Cooker;
