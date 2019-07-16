@@ -1,10 +1,13 @@
 function render() {    
    
-    const element = document.createElement('div');
+    const wrapHead = document.createElement('div');
+    const countOrder = document.createElement('p');
 
-    element.innerHTML = "Hello world"
+    wrapHead.appendChild(countOrder);
 
-    return element;
+    // element.innerHTML = "Hello world"
+
+    return wrapHead;
 }
 
 export default render;

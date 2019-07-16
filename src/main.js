@@ -4,11 +4,13 @@ import clientGenerator from './components/clientGenerator';
 import CookerGenerator from './components/Cooker';
 import randomInteger from './components/randomInteger';
 import render from './components/render';
-
+import './styles/styles.scss';
 document.body.appendChild(render());
+let countOrder = document.querySelector('p');
 
 const clientContainer = [];
-let id = 1;
+const complitedOrderContainer = [];
+let id = 1; 
 
 const Client = new clientGenerator();
 const clientConstructor = inherit(EventEmitter, Client);
@@ -22,10 +24,10 @@ chef.on("chefFree", chefFree)
 setTimeout(function run() {
   clientContainer.push(new clientConstructor(`${id}`));
   clientContainer[clientContainer.length - 1].on("createClient", orderHandler); // создаем подписку
-
-  console.log(`Поступил ${id} заказ \t В очереди [${clientContainer.map((e) => e.clientName)}]`);
-
   clientContainer[0].emit('createClient');
+  console.log(`Поступил ${id} заказ \t В очереди [${clientContainer.map((e) => e.clientName)}]`);
+  countOrder.innerHTML = `В очереди: ${clientContainer.map((e) => e.clientName)}`;
+  
   id++;
 
   setTimeout(run, randomInteger(0,7) * 1000);
@@ -33,8 +35,9 @@ setTimeout(function run() {
 
 function orderHandler() {  
   if (!chef.inWork) { // если он не в работе => ....
-    chef.clientName = clientContainer[0].clientName;
-    chef.ingredient = clientContainer[0].order;
+    complitedOrderContainer.push(clientContainer.shift()) //Удаление клиента из очереди
+    chef.clientName = complitedOrderContainer[complitedOrderContainer.length - 1].clientName;
+    chef.ingredient = complitedOrderContainer[complitedOrderContainer.length - 1].order;
     chef.inWork = true;
 
     console.log(`${chef.clientName} заказ в обработке`);
@@ -47,7 +50,7 @@ function orderHandler() {
 
 function chefFree(id) {
   chef.inWork = false;
-  clientContainer.shift()  //Удаление клиента из очереди
+    
 
   console.log(`${id} выполнен \t\t В очереди [${clientContainer.map((e) => e.clientName)}]`)
 
@@ -55,3 +58,4 @@ function chefFree(id) {
     clientContainer[0].emit('createClient') 
   }
 }
+
