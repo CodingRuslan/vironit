@@ -1,15 +1,13 @@
-let arr = [];
-
-function destr(obj) {
+function destr(obj, arr = []) {
     for (key in obj) {
         if (obj[key] === null) {
             arr.push(null)
         } else if (Array.isArray(obj[key])) {
             arr = arr.concat(obj[key]);
         } else if (typeof obj[key] === "object" ) {
-            for (newKey in obj[key]) {
-                arr.push(obj[key][newKey])
-            }
+            destr(obj[key], arr)
+        } else {
+            arr.push(obj[key]);
         }
     }
     
