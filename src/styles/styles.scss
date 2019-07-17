@@ -1,3 +1,70 @@
 body {
-    background-color: aliceblue;
+    // background-color: #f0f8ff;
+
+
+    .generalWrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 50px 400px;
+        // align-items: start;
+        max-width: inherit;
+        width: 70%;
+        margin: auto;
+
+        .text {
+            margin: 10px 50px;
+        }
+        
+        .headWrap {
+            display: grid;
+            grid-column: 1 / 4;
+            grid-row: 1 / 2;
+            grid-template-columns: 1fr 1fr;
+            justify-items: center;
+            border: 1px solid black;
+
+            .orderCountWrap {
+                grid-column: 1 / 2;
+                width: 100%;
+                border: 1px solid black;
+            }
+
+            .cookCountWrap {
+                grid-column: 2 / 3;
+                width: 100%;
+                border: 1px solid black;
+            }
+        }
+
+        .mainWrap {
+            display: grid;
+            grid-column: 1 / 4;
+            grid-row: 2 / 3;
+            grid-template-columns: 1fr 1fr 1fr;
+            justify-items: center;
+            border: 1px solid rebeccapurple;
+
+            .lable {
+                text-align: center;
+            }
+
+            .queueWrap {
+                grid-column: 1 / 2;
+                width: 100%;
+                border: 1px solid black;
+            }
+
+            .processWrap {
+                grid-column: 2 / 3;
+                width: 100%;
+                border: 1px solid black;
+            }
+
+            .readyOrderWrap {
+                grid-column: 3 / 4;
+                width: 100%;
+                border: 1px solid black;
+            }
+        }
+    }
 }
