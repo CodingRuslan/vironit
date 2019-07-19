@@ -11,6 +11,7 @@ const clientContainer = [];
 const performanceContainer = [];
 const completedOrderContainer = [];
 let id = 1;
+let removeCookFlag = false;
 
 const Client = new clientGenerator();
 const clientConstructor = inherit(EventEmitter, Client);
@@ -18,7 +19,6 @@ const clientConstructor = inherit(EventEmitter, Client);
 const Cooker = new CookerGenerator();
 const CookerConstructor = inherit(EventEmitter, Cooker);
 
-//!!!---------------------------render -------------------------------
 document.body.appendChild(render());
 const orderCount = document.querySelector('.orderCount');
 const cookCount = document.querySelector('.cookCount');
@@ -29,7 +29,6 @@ const addCookBtn = document.querySelector('button.addCookBtn');
 const deleteCookBtn = document.querySelector('button.deleteCookBtn');
 
 cookCount.innerHTML = `Поваров в работе: ${cookContainer.length}`;
-// ---------------------------------------------------------------------
 
 addCookBtn.addEventListener('click',() => {
   cookContainer.push(new CookerConstructor());
@@ -38,13 +37,9 @@ addCookBtn.addEventListener('click',() => {
 });
 
 deleteCookBtn.addEventListener('click', () => {
-  cookContainer[cookContainer.length - 1].removeListener("chefFree", chefFree);
-  cookContainer.pop();
-  clientContainer.unshift(performanceContainer.pop());
-  cookCount.innerHTML = `Поваров в работе: ${cookContainer.length}`;
-  process.innerHTML = `${performanceContainer.map((e) => e.clientName).join(' ')}`;
-  queue.innerHTML = `${clientContainer.map((e) => e.clientName).join(' ')}`;
-  orderCount.innerHTML = `Размер очереди: ${clientContainer.length}`;
+  if (cookContainer.length > 0 ) {
+    removeCookFlag = true;
+  }
 })
 
 setTimeout(function run() {
@@ -75,9 +70,8 @@ function orderHandler() {
 
           setTimeout(() => {
             if (cookContainer[i] !== undefined) {
-              cookContainer[i].emit("chefFree", cookContainer[i].clientName, i)
+              cookContainer[i].emit("chefFree", cookContainer[i].clientName, i);
             }
-            return
           }, cookContainer[i].cooking() * 1000)
         }
       }
@@ -86,11 +80,27 @@ function orderHandler() {
 }
 
 function chefFree(clientName, cookId) {
-  cookContainer[cookId].inWork = false;
-  completedOrderContainer.push(performanceContainer[performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}})]);
-  performanceContainer.splice(performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}}), 1);
-  process.innerHTML = `${performanceContainer.map((e) => e.clientName).join(' ')}`;
-  readyOrder.innerHTML = `${completedOrderContainer.map((e) => e.clientName).join(' ')}`;
+  if (removeCookFlag) { // удаление повара
+    removeCookFlag = false;
+    cookContainer[cookId].inWork = false;
+    completedOrderContainer.push(performanceContainer[performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}})]);
+    performanceContainer.splice(performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}}), 1);
+    process.innerHTML = `${performanceContainer.map((e) => e.clientName).join(' ')}`;
+    readyOrder.innerHTML = `${completedOrderContainer.map((e) => e.clientName).join(' ')}`;
+
+    cookContainer.splice(cookId, 1)
+    cookCount.innerHTML = `Поваров в работе: ${cookContainer.length}`;
+    process.innerHTML = `${performanceContainer.map((e) => e.clientName).join(' ')}`;
+    queue.innerHTML = `${clientContainer.map((e) => e.clientName).join(' ')}`;
+    orderCount.innerHTML = `Размер очереди: ${clientContainer.length}`; 
+  } else {
+    cookContainer[cookId].inWork = false;
+    completedOrderContainer.push(performanceContainer[performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}})]);
+    performanceContainer.splice(performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}}), 1);
+    process.innerHTML = `${performanceContainer.map((e) => e.clientName).join(' ')}`;
+    readyOrder.innerHTML = `${completedOrderContainer.map((e) => e.clientName).join(' ')}`;
+  }
+
   // console.log(`${clientName} выполнен \t\t В очереди [${clientContainer.map((e) => e.clientName)}]`);
 
   if (clientContainer.length > 0) {
