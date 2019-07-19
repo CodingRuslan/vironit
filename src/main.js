@@ -80,7 +80,7 @@ function orderHandler() {
 }
 
 function chefFree(clientName, cookId) {
-  if (removeCookFlag) { // удаление повара
+  if (removeCookFlag && cookId === cookContainer.length - 1) { // удаление повара
     removeCookFlag = false;
     cookContainer[cookId].inWork = false;
     completedOrderContainer.push(performanceContainer[performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}})]);
@@ -90,9 +90,6 @@ function chefFree(clientName, cookId) {
 
     cookContainer.splice(cookId, 1)
     cookCount.innerHTML = `Поваров в работе: ${cookContainer.length}`;
-    process.innerHTML = `${performanceContainer.map((e) => e.clientName).join(' ')}`;
-    queue.innerHTML = `${clientContainer.map((e) => e.clientName).join(' ')}`;
-    orderCount.innerHTML = `Размер очереди: ${clientContainer.length}`; 
   } else {
     cookContainer[cookId].inWork = false;
     completedOrderContainer.push(performanceContainer[performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}})]);
