@@ -1,7 +1,7 @@
 body .generalWrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 120px 400px;
+  grid-template-rows: 100px 400px;
   max-width: inherit;
   width: 70%;
   margin: auto; }
