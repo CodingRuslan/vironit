@@ -1,7 +1,7 @@
 body .generalWrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 100px 400px;
+  grid-template-rows: 120px 400px;
   max-width: inherit;
   width: 70%;
   margin: auto; }
@@ -27,7 +27,18 @@ body .generalWrapper {
       grid-row: 2 / 3;
       grid-column: 2 / 3;
       width: 100%;
-      border: 3px solid red; }
+      border: 3px solid red;
+      display: flex; }
+      body .generalWrapper .headWrap .cookScreen .cookNotWorksIcon {
+        width: 50px;
+        height: 50px;
+        margin: 0 5px;
+        background-image: url(f53ce78fe83967de6aa1568fd7c132c9.png); }
+      body .generalWrapper .headWrap .cookScreen .cookWorksIcon {
+        width: 50px;
+        height: 50px;
+        margin: 0 5px;
+        background-image: url(ea68f816ea13c372cff8e58d3341f59a.png); }
     body .generalWrapper .headWrap .button {
       margin: 5px; }
     body .generalWrapper .headWrap .addCookBtn {
