@@ -101,6 +101,10 @@ function chefFree(clientName, cookId) {
     
     const cookIcon = document.querySelector('.cookWorksIcon')
     cookScreen.removeChild(cookIcon); 
+
+    if (cookContainer.length > 0) {
+      returnClient(completedOrderContainer[completedOrderContainer.length - 1]);
+    }
   } else {
     cookContainer[cookId].inWork = false;
     completedOrderContainer.push(performanceContainer[performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}})]);
@@ -118,5 +122,16 @@ function chefFree(clientName, cookId) {
   if (clientContainer.length > 0) {
     clientContainer[0].emit('createClient') 
   }
+
+  if (cookContainer.length > 0) {
+    returnClient(completedOrderContainer[completedOrderContainer.length - 1]);
+  }
 }
 
+function returnClient(client) {
+  if (randomInteger(1, 100) <= 25) {
+    clientContainer.push(client);
+    orderCount.innerHTML = `Размер очереди: ${clientContainer.length}`;
+    queue.innerHTML = `${clientContainer.map((e) => e.clientName).join(' ')}`;
+  } 
+}
