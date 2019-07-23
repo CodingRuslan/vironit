@@ -27,6 +27,7 @@ const process = document.querySelector('div.processWrap p');
 const readyOrder = document.querySelector('div.readyOrderWrap p');
 const addCookBtn = document.querySelector('button.addCookBtn');
 const deleteCookBtn = document.querySelector('button.deleteCookBtn');
+const cookScreen = document.querySelector('.cookScreen');
 
 cookCount.innerHTML = `Поваров в работе: ${cookContainer.length}`;
 
@@ -34,6 +35,10 @@ addCookBtn.addEventListener('click',() => {
   cookContainer.push(new CookerConstructor());
   cookContainer[cookContainer.length - 1].on("chefFree", chefFree);
   cookCount.innerHTML = `Поваров в работе: ${cookContainer.length}`;
+
+  const cookIcon = document.createElement('div');
+  cookIcon.classList.add('cookNotWorksIcon');
+  cookScreen.appendChild(cookIcon);
 });
 
 deleteCookBtn.addEventListener('click', () => {
@@ -66,6 +71,10 @@ function orderHandler() {
           cookContainer[i].inWork = true;
           orderCount.innerHTML = `Размер очереди: ${clientContainer.length}`;
           queue.innerHTML = `${clientContainer.map((e) => e.clientName).join(' ')}`;
+
+          const cookIcon = document.querySelector('.cookNotWorksIcon');
+          cookIcon.classList.add("cookWorksIcon");
+          cookIcon.classList.remove("cookNotWorksIcon");
           // console.log(`${cookContainer[i].clientName} заказ в обработке`);
 
           setTimeout(() => {
@@ -76,7 +85,6 @@ function orderHandler() {
         }
       }
     }
-
 }
 
 function chefFree(clientName, cookId) {
@@ -90,12 +98,19 @@ function chefFree(clientName, cookId) {
 
     cookContainer.splice(cookId, 1)
     cookCount.innerHTML = `Поваров в работе: ${cookContainer.length}`;
+    
+    const cookIcon = document.querySelector('.cookWorksIcon')
+    cookScreen.removeChild(cookIcon); 
   } else {
     cookContainer[cookId].inWork = false;
     completedOrderContainer.push(performanceContainer[performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}})]);
     performanceContainer.splice(performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}}), 1);
     process.innerHTML = `${performanceContainer.map((e) => e.clientName).join(' ')}`;
     readyOrder.innerHTML = `${completedOrderContainer.map((e) => e.clientName).join(' ')}`;
+
+    const cookIcon = document.querySelector('.cookWorksIcon');
+    cookIcon.classList.remove("cookWorksIcon");
+    cookIcon.classList.add("cookNotWorksIcon");
   }
 
   // console.log(`${clientName} выполнен \t\t В очереди [${clientContainer.map((e) => e.clientName)}]`);

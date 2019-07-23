@@ -24,6 +24,15 @@ module.exports = {
         },
       },
       {
+        test: /\.(png|jpe?g|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {},
+          },
+        ],
+      },
+      {
         test: /\.(sa|sc|c)ss$/,
         include: path.resolve(__dirname, 'src/styles'),
         use: [
@@ -33,9 +42,17 @@ module.exports = {
               hmr: process.env.NODE_ENV === 'development',
             },
           },
+          // {
+          //   loader: 'resolve-url-loader',
+          // },
           'css-loader',
           // 'postcss-loader',
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+                sourceMap: true
+            }
+          }
         ],
       },
     ]

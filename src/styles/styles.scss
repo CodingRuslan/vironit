@@ -5,7 +5,7 @@ body {
   .generalWrapper {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 100px 400px;
+    grid-template-rows: 120px 400px;
     // align-items: start;
     max-width: inherit;
     width: 70%;
@@ -43,6 +43,21 @@ body {
         grid-column: 2 / 3;
         width: 100%;
         border: 3px solid red;
+        display: flex;
+
+        .cookNotWorksIcon {
+          width: 50px;
+          height: 50px;
+          margin: 0 5px;
+          background-image: url(../img/cookNoFill.png);
+        }
+
+        .cookWorksIcon {
+          width: 50px;
+          height: 50px;
+          margin: 0 5px;
+          background-image: url(../img/cookFill.png);
+        }
       }
 
       .button {
