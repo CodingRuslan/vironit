@@ -1,1 +1,1 @@
-https://codingruslan.github.io/vironit/
+https://codingruslan.github.io/vironit/dist
