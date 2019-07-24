@@ -30,9 +30,9 @@ const cookScreen = document.querySelector('.cookScreen');
 
 setTimeout(function run() {
   clientContainer.push(new СlientConstructor(`${id}`));
-  clientContainer[clientContainer.length - 1].on("createClient", orderHandler); // создаем подписку
+  clientContainer[clientContainer.length - 1].on("createClient", orderHandler);
   clientContainer[0].emit('createClient');
-  renderInfo()
+  renderInfo();
   
   id++;
   setTimeout(run, randomInteger(0,7) * 1000);
@@ -40,9 +40,9 @@ setTimeout(function run() {
 
 function orderHandler() {
   for (let i = 0; i <= cookContainer.length - 1; i++) {
-    if (!cookContainer[i].inWork) { // если он не в работе => ....
+    if (!cookContainer[i].inWork) {
       if (clientContainer.length > 0){
-        performanceContainer.unshift(clientContainer.shift()); // Перемещение заказа в выполнение
+        performanceContainer.unshift(clientContainer.shift());
         
         cookContainer[i].clientName = performanceContainer[0].clientName;
         cookContainer[i].ingredient = performanceContainer[0].order;
@@ -52,7 +52,7 @@ function orderHandler() {
         cookIcon.classList.add("cookWorksIcon");
         cookIcon.classList.remove("cookNotWorksIcon");
 
-        renderInfo()
+        renderInfo();
         setTimeout(() => {
             cookContainer[i].emit("chefFree", cookContainer[i].clientName, i);
         }, cookContainer[i].cooking() * 1000)
@@ -70,13 +70,13 @@ function chefFree(clientName, cookId) {
   cookIcon.classList.remove("cookWorksIcon");
   cookIcon.classList.add("cookNotWorksIcon");
 
-  renderInfo()
+  renderInfo();
   if (cookContainer.length > 0) {
     returnClient(completedOrderContainer[completedOrderContainer.length - 1]);
   }
 
   if (clientContainer.length > 0) {
-    clientContainer[0].emit('createClient') 
+    clientContainer[0].emit('createClient');
   }
 }
 
@@ -87,7 +87,7 @@ addCookBtn.addEventListener('click',() => {
   const cookIcon = document.createElement('div');
   cookIcon.classList.add('cookNotWorksIcon');
   cookScreen.appendChild(cookIcon);
-  renderInfo()
+  renderInfo();
 });
 
 deleteCookBtn.addEventListener('click', () => {
@@ -97,7 +97,7 @@ deleteCookBtn.addEventListener('click', () => {
       
       const cookIcon = document.querySelector('.cookNotWorksIcon');
       cookScreen.removeChild(cookIcon); 
-      renderInfo()
+      renderInfo();
     }
   }
 })
@@ -105,7 +105,7 @@ deleteCookBtn.addEventListener('click', () => {
 function returnClient(client) {
   if (randomInteger(1, 100) <= 25) {
     clientContainer.push(client);
-    renderInfo()
+    renderInfo();
   } 
 }
 
