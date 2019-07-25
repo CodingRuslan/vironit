@@ -6,7 +6,8 @@ body .generalWrapper {
   width: 70%;
   margin: auto; }
   body .generalWrapper .text {
-    margin: 10px 50px; }
+    margin: 12px;
+    display: inline-block; }
   body .generalWrapper .headWrap {
     display: grid;
     grid-column: 1 / 4;
@@ -40,15 +41,25 @@ body .generalWrapper {
         margin: 0 5px;
         background-image: url(ea68f816ea13c372cff8e58d3341f59a.png); }
     body .generalWrapper .headWrap .button {
-      margin: 5px; }
+      margin: 5px;
+      border: none;
+      background-repeat: no-repeat;
+      background-color: white;
+      outline: none; }
+    body .generalWrapper .headWrap .button:hover {
+      background-color: #00aeff; }
+    body .generalWrapper .headWrap .button:active {
+      background-color: red; }
     body .generalWrapper .headWrap .addCookBtn {
       grid-row: 2 / 3;
       grid-column: 3 / 4;
-      width: 50px; }
+      width: 46px;
+      background-image: url(e3d7e8fb85ec7eb60d35fc83700db832.png); }
     body .generalWrapper .headWrap .deleteCookBtn {
       grid-row: 2 / 3;
       grid-column: 1 / 2;
-      width: 50px; }
+      width: 46px;
+      background-image: url(a2b48dd55dbc6d1591b18dab2cec846b.png); }
   body .generalWrapper .mainWrap {
     display: grid;
     grid-column: 1 / 4;
@@ -60,15 +71,18 @@ body .generalWrapper {
     body .generalWrapper .mainWrap .queueWrap {
       grid-column: 1 / 2;
       width: 100%;
-      border: 1px solid black; }
+      border: 1px solid black;
+      text-align: center; }
     body .generalWrapper .mainWrap .processWrap {
       grid-column: 2 / 3;
       width: 100%;
-      border: 1px solid black; }
+      border: 1px solid black;
+      text-align: center; }
     body .generalWrapper .mainWrap .readyOrderWrap {
       grid-column: 3 / 4;
       width: 100%;
-      border: 1px solid black; }
+      border: 1px solid black;
+      text-align: center; }
 
 
 /*# sourceMappingURL=main.css.map*/
