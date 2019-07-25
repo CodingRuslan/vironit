@@ -62,18 +62,23 @@ body {
 
       .button {
         margin: 5px;
+        border: none;
+        background-repeat: no-repeat;
+        background-color: white;
       }
 
       .addCookBtn {
         grid-row: 2 / 3;
         grid-column: 3 / 4;
         width: 50px;
+        background-image: url(../img/addBtn.png);
       }
 
       .deleteCookBtn {
         grid-row: 2 / 3;
         grid-column: 1 / 2;
         width: 50px;
+        background-image: url(../img//deleteBtn.png);
       }
     }
 

@@ -17,7 +17,7 @@ const СlientConstructor = inherit(EventEmitter, Client);
 
 const Cooker = new CookerGenerator();
 const CookerConstructor = inherit(EventEmitter, Cooker);
-
+  
 document.body.appendChild(render());
 const orderCount = document.querySelector('.orderCount');
 const cookCount = document.querySelector('.cookCount');
@@ -43,7 +43,6 @@ function orderHandler() {
     if (!cookContainer[i].inWork) {
       if (clientContainer.length > 0){
         performanceContainer.unshift(clientContainer.shift());
-        
         cookContainer[i].clientName = performanceContainer[0].clientName;
         cookContainer[i].ingredient = performanceContainer[0].order;
         cookContainer[i].inWork = true;
