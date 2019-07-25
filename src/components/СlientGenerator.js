@@ -1,12 +1,13 @@
 import ingredients from './Ingredients';
 import randomInteger from './randomInteger';
 
+const ingredientsCount = randomInteger(2,4);
+
 function clientGenerator(clientName) {
   this.clientName = clientName;
-  this.order =[ingredients[randomInteger(0,4)], ingredients[randomInteger(0,4)]];
-
-  this.getIngr = function() {
-    return this.order
+  this.order = [];
+  for (let i = 0; i < ingredientsCount; i++) {
+    this.order.push(ingredients[randomInteger(0,4)])
   }
 }
 

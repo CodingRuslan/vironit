@@ -21,9 +21,9 @@ const CookerConstructor = inherit(EventEmitter, Cooker);
 document.body.appendChild(render());
 const orderCount = document.querySelector('.orderCount');
 const cookCount = document.querySelector('.cookCount');
-const queue = document.querySelector('div.queueWrap p');
-const process = document.querySelector('div.processWrap p');
-const readyOrder = document.querySelector('div.readyOrderWrap p');
+const queue = document.querySelector('div.queueWrap div');
+const process = document.querySelector('div.processWrap div');
+const readyOrder = document.querySelector('div.readyOrderWrap div');
 const addCookBtn = document.querySelector('button.addCookBtn');
 const deleteCookBtn = document.querySelector('button.deleteCookBtn');
 const cookScreen = document.querySelector('.cookScreen');
@@ -103,7 +103,10 @@ deleteCookBtn.addEventListener('click', () => {
 
 function returnClient(client) {
   if (randomInteger(1, 100) <= 25) {
-    clientContainer.push(client);
+    clientContainer.push(new СlientConstructor(`${client.clientName}`));
+    clientContainer[clientContainer.length - 1].on("createClient", orderHandler);
+    clientContainer[0].emit('createClient');
+
     renderInfo();
   } 
 }
@@ -112,7 +115,7 @@ function renderInfo() {
   cookCount.innerHTML = `Поваров в работе: ${cookContainer.length}`;
   orderCount.innerHTML = `Размер очереди: ${clientContainer.length}`;
 
-  queue.innerHTML = `${clientContainer.map((e) => e.clientName).join(' ')}`;
-  process.innerHTML = `${performanceContainer.map((e) => e.clientName).join(' ')}`;
-  readyOrder.innerHTML = `${completedOrderContainer.map((e) => e.clientName).join(' ')}`;
+  queue.innerHTML = `${clientContainer.map((e) => `<p class = "text">${e.clientName}</p>`).join(' ')}`;
+  process.innerHTML = `${performanceContainer.map((e) => `<p class = "text">${e.clientName}</p>`).join(' ')}`;
+  readyOrder.innerHTML = `${completedOrderContainer.map((e) => `<p class = "text">${e.clientName}</p>`).join(' ')}`;
 }

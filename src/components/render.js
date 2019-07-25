@@ -35,27 +35,26 @@ export default function render() {
     // main
     const mainWrap = document.createElement('div');
     const queueWrap = document.createElement('div');
+    const queueContainer = document.createElement('div');
     const processWrap = document.createElement('div');
+    const processContainer = document.createElement('div');
     const readyOrderWrap = document.createElement('div');
+    const readyOrderContainer = document.createElement('div');
     const queueLabel = document.createElement('h3');
     const processLabel = document.createElement('h3');
     const readyOrderLabel = document.createElement('h3');
-    const queue = document.createElement('p');
-    const process = document.createElement('p');
-    const readyOrder = document.createElement('p');
 
     mainWrap.classList.add('mainWrap');
     queueWrap.classList.add('queueWrap');
     processWrap.classList.add('processWrap');
     readyOrderWrap.classList.add('readyOrderWrap');
+    queueContainer.classList.add('queueContainer');
+    processContainer.classList.add('processContainer');
+    readyOrderContainer.classList.add('readyOrderContainer');
 
     queueLabel.classList.add('text', 'label');
     processLabel.classList.add('text', 'label');
     readyOrderLabel.classList.add('text', 'label');
-    
-    queue.classList.add('text');
-    process.classList.add('text');
-    readyOrder.classList.add('text');
 
     queueLabel.innerHTML = "в очереди" ;
     processLabel.innerHTML = "готовятся";
@@ -65,11 +64,11 @@ export default function render() {
     mainWrap.appendChild(processWrap);
     mainWrap.appendChild(readyOrderWrap);
     queueWrap.appendChild(queueLabel);
-    queueWrap.appendChild(queue);
+    queueWrap.appendChild(queueContainer);
     processWrap.appendChild(processLabel);
-    processWrap.appendChild(process);
+    processWrap.appendChild(processContainer);
     readyOrderWrap.appendChild(readyOrderLabel);
-    readyOrderWrap.appendChild(readyOrder);
+    readyOrderWrap.appendChild(readyOrderContainer);
 
     generalWrapper.appendChild(headWrap);
     generalWrapper.appendChild(mainWrap);
