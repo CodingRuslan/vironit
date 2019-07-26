@@ -52,9 +52,9 @@ export default function render() {
     processContainer.classList.add('processContainer');
     readyOrderContainer.classList.add('readyOrderContainer');
 
-    queueLabel.classList.add('text', 'label');
-    processLabel.classList.add('text', 'label');
-    readyOrderLabel.classList.add('text', 'label');
+    queueLabel.classList.add('label');
+    processLabel.classList.add('label');
+    readyOrderLabel.classList.add('label');
 
     queueLabel.innerHTML = "в очереди" ;
     processLabel.innerHTML = "готовятся";
@@ -70,8 +70,33 @@ export default function render() {
     readyOrderWrap.appendChild(readyOrderLabel);
     readyOrderWrap.appendChild(readyOrderContainer);
 
+    //orderInfoWrap
+    const orderInfoWrap = document.createElement('div');
+    const orderInfoContainer = document.createElement('div')
+    const orderReviewContainder = document.createElement('div');
+    const orderId = document.createElement('div');
+    const orderIngredients = document.createElement('div');
+    const orderTimeCooking = document.createElement('p');
+    const orderReview = document.createElement('p');
+
+    orderInfoWrap.classList.add('orderInfoWrap');
+    orderInfoContainer.classList.add('orderInfoContainer');
+    orderReviewContainder.classList.add('orderReviewContainder');
+    orderId.classList.add('orderId');
+    orderIngredients.classList.add('orderIngredients');
+    orderTimeCooking.classList.add('orderTimeCooking');
+    orderReview.classList.add('orderReview');
+
+    orderInfoWrap.appendChild(orderInfoContainer);
+    orderInfoWrap.appendChild(orderReviewContainder);
+    orderInfoContainer.appendChild(orderId);
+    orderInfoContainer.appendChild(orderIngredients);
+    orderReviewContainder.appendChild(orderTimeCooking);   
+    orderReviewContainder.appendChild(orderReview);   
+
     generalWrapper.appendChild(headWrap);
     generalWrapper.appendChild(mainWrap);
+    generalWrapper.appendChild(orderInfoWrap);
 
     return generalWrapper;
 }

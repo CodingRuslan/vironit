@@ -1,16 +1,22 @@
 body {
+  margin: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
   .generalWrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 100px 400px;
+    grid-template-columns: 1fr 1fr 1fr 2fr;
+    grid-template-rows: 100px 865px;
     max-width: inherit;
-    width: 70%;
-    margin: auto;
+    width: 100%;
+    background-color: white;
+    background-image: url('../img/backPizza.png');
+    background-position: 100px 100px;
+    background-repeat: no-repeat;
 
     .text {
-        margin: 12px;
-        display: inline-block
+      margin: 12px;
+      display: inline-block;
+      background-color: white;
     }
 
     .headWrap {
@@ -92,6 +98,7 @@ body {
       grid-column: 1 / 4;
       grid-row: 2 / 3;
       grid-template-columns: 1fr 1fr 1fr;
+      // grid-template-rows: 2fr 1fr;
       justify-items: center;
 
       .label {
@@ -100,23 +107,102 @@ body {
 
       .queueWrap {
         grid-column: 1 / 2;
+        grid-row: 1 / 2;
         width: 100%;
         border: 1px solid black;
         text-align: center;
+
+        .text {
+          width: 18px;
+          border: 1px solid black;
+        }
       }
 
       .processWrap {
           grid-column: 2 / 3;
+          grid-row: 1 / 2;
           width: 100%;
           border: 1px solid black;
           text-align: center;
+          .text {
+            width: 18px;
+            border: 1px solid black;
+          }
       }
 
       .readyOrderWrap {
           grid-column: 3 / 4;
+          grid-row: 1 / 2;
           width: 100%;
           border: 1px solid black;
           text-align: center;
+          .text {
+            width: 18px;
+            border: 1px solid black;
+          }
+      }
+
+      .reviewWrap {
+        grid-column: 1 / 4;
+        grid-row: 2 / 3;
+        width: 100%;
+        border: 1px solid black;
+      }
+    }
+
+    .orderInfoWrap {
+      display: grid;
+      grid-column: 4 / 5;
+      grid-row: 1 / 3;
+      grid-template-rows: 2fr 1fr;
+      justify-items: center;
+      border: 1px solid black;
+
+      .orderInfoContainer {
+        grid-row: 1 / 2;
+        width: 100%;
+        background-color: aliceblue;
+
+        .orderId {
+          background-color: rgb(62, 240, 240);
+          width: 90%;
+          height: 50px;
+          margin: 5px auto;
+          text-align: center;
+          color: red;
+          
+          h2 {
+            padding: 10px;
+            margin: 0;
+          }
+        }
+
+        .orderIngredients {
+          text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;     // color: #FFFFFF;
+          background-image: url('../img/orderBack.jpg');
+          background-position: center;
+          // background-size: cover;
+          background-repeat: no-repeat;
+          height: 100%;
+          margin: 5px auto;
+          text-align: center;
+          h2 {
+            margin: 0;
+            padding: 10px;
+            font-size: xx-large;
+          }
+
+          .ingredientText {
+            font-size: 30px;
+            text-decoration: overline;
+          }
+        }
+      }
+
+      .orderReviewContainder {
+        grid-row: 2 / 3;
+        width: 100%;
+        background-color: beige;
       }
     }
   }

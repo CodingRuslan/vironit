@@ -68,8 +68,8 @@ function chefFree(clientName, cookId) {
   const cookIcon = document.querySelector('.cookWorksIcon');
   cookIcon.classList.remove("cookWorksIcon");
   cookIcon.classList.add("cookNotWorksIcon");
-
   renderInfo();
+  
   if (cookContainer.length > 0) {
     returnClient(completedOrderContainer[completedOrderContainer.length - 1]);
   }
@@ -101,12 +101,70 @@ deleteCookBtn.addEventListener('click', () => {
   }
 })
 
+document.addEventListener('click', e => {
+  const el = e.target;
+  const orderId = document.querySelector('.orderId');
+  const orderIngredients = document.querySelector('.orderIngredients');
+
+  if (el.parentNode.classList.value === "queueContainer") {
+    orderId.innerHTML = `<h2>Заказ номер ${clientContainer[clientContainer.findIndex((e) => {
+      if (e.clientName === el.id) {
+        return e;
+      }
+    })].clientName}</h2>`;
+
+    let ingrStr = "<h2>Ингридиенты</h2>";
+
+    clientContainer[clientContainer.findIndex((e) => {
+      if (e.clientName === el.id) {
+        return e;
+      }
+    })].order.forEach((e) => {
+      ingrStr += `<p class = "ingredientText">${e.name}</p>`
+    });
+    orderIngredients.innerHTML = ingrStr;
+  } else if (el.parentNode.classList.value === "processContainer") {
+    orderId.innerHTML = `<h2>Заказ номер ${performanceContainer[performanceContainer.findIndex((e) => {
+      if (e.clientName === el.id) {
+        return e;
+      }
+    })].clientName}</h2>`;
+
+    let ingrStr = "<h2>Ингридиенты</h2>";
+
+    performanceContainer[performanceContainer.findIndex((e) => {
+      if (e.clientName === el.id) {
+        return e;
+      }
+    })].order.forEach((e) => {
+      ingrStr += `<p class = "ingredientText">${e.name}</p>`
+    });
+    orderIngredients.innerHTML = ingrStr;
+  } else if (el.parentNode.classList.value === "readyOrderContainer") {
+    orderId.innerHTML = `<h2>Заказ номер ${completedOrderContainer[completedOrderContainer.findIndex((e) => {
+      if (e.clientName === el.id) {
+        return e;
+      }
+    })].clientName}</h2>`;
+
+    let ingrStr = "<h2>Ингридиенты</h2>";
+
+    completedOrderContainer[completedOrderContainer.findIndex((e) => {
+      if (e.clientName === el.id) {
+        return e;
+      }
+    })].order.forEach((e) => {
+      ingrStr += `<p class = "ingredientText">${e.name}</p>`
+    });
+    orderIngredients.innerHTML = ingrStr;
+  }
+})
+
 function returnClient(client) {
   if (randomInteger(1, 100) <= 25) {
     clientContainer.push(new СlientConstructor(`${client.clientName}`));
     clientContainer[clientContainer.length - 1].on("createClient", orderHandler);
     clientContainer[0].emit('createClient');
-
     renderInfo();
   } 
 }
@@ -115,7 +173,7 @@ function renderInfo() {
   cookCount.innerHTML = `Поваров в работе: ${cookContainer.length}`;
   orderCount.innerHTML = `Размер очереди: ${clientContainer.length}`;
 
-  queue.innerHTML = `${clientContainer.map((e) => `<p class = "text">${e.clientName}</p>`).join(' ')}`;
-  process.innerHTML = `${performanceContainer.map((e) => `<p class = "text">${e.clientName}</p>`).join(' ')}`;
-  readyOrder.innerHTML = `${completedOrderContainer.map((e) => `<p class = "text">${e.clientName}</p>`).join(' ')}`;
+  queue.innerHTML = `${clientContainer.map((e) => `<p class = "text" id = ${e.clientName}>${e.clientName}</p>`).join(' ')}`;
+  process.innerHTML = `${performanceContainer.map((e) => `<p class = "text" id = ${e.clientName}>${e.clientName}</p>`).join(' ')}`;
+  readyOrder.innerHTML = `${completedOrderContainer.map((e) => `<p class = "text" id = ${e.clientName}>${e.clientName}</p>`).join(' ')}`;
 }
