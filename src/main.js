@@ -29,7 +29,7 @@ const deleteCookBtn = document.querySelector('button.deleteCookBtn');
 const cookScreen = document.querySelector('.cookScreen');
 
 setTimeout(function run() {
-  clientContainer.push(new СlientConstructor(`${id}`));
+  clientContainer.push(new СlientConstructor(`${id}`,performance.now()));
   clientContainer[clientContainer.length - 1].on("createClient", orderHandler);
   clientContainer[0].emit('createClient');
   renderInfo();
@@ -63,6 +63,7 @@ function orderHandler() {
 function chefFree(clientName, cookId) {
   cookContainer[cookId].inWork = false;
   completedOrderContainer.push(performanceContainer[performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}})]);
+  completedOrderContainer[completedOrderContainer.length - 1].orderPreparationTime = Math.floor((performance.now() - completedOrderContainer[completedOrderContainer.length - 1].orderPreparationTime) / 1000);
   performanceContainer.splice(performanceContainer.findIndex((e) => {if(e.clientName == clientName) {return e}}), 1);
 
   const cookIcon = document.querySelector('.cookWorksIcon');
@@ -105,13 +106,15 @@ document.addEventListener('click', e => {
   const el = e.target;
   const orderId = document.querySelector('.orderId');
   const orderIngredients = document.querySelector('.orderIngredients');
+  const orderTimeCooking = document.querySelector('.orderTimeCooking');
+  const orderReview = document.querySelector('.orderReview');
 
   if (el.parentNode.classList.value === "queueContainer") {
-    orderId.innerHTML = `<h2>Заказ номер ${clientContainer[clientContainer.findIndex((e) => {
+    orderId.innerHTML = `<h1>Заказ номер ${clientContainer[clientContainer.findIndex((e) => {
       if (e.clientName === el.id) {
         return e;
       }
-    })].clientName}</h2>`;
+    })].clientName}</h1>`;
 
     let ingrStr = "<h2>Ингридиенты</h2>";
 
@@ -123,12 +126,14 @@ document.addEventListener('click', e => {
       ingrStr += `<p class = "ingredientText">${e.name}</p>`
     });
     orderIngredients.innerHTML = ingrStr;
+    orderTimeCooking.innerHTML = `<h2>Заказ еще в обработке</h2>`
+    orderReview.innerHTML = "";
   } else if (el.parentNode.classList.value === "processContainer") {
-    orderId.innerHTML = `<h2>Заказ номер ${performanceContainer[performanceContainer.findIndex((e) => {
+    orderId.innerHTML = `<h1>Заказ номер ${performanceContainer[performanceContainer.findIndex((e) => {
       if (e.clientName === el.id) {
         return e;
       }
-    })].clientName}</h2>`;
+    })].clientName}</h1>`;
 
     let ingrStr = "<h2>Ингридиенты</h2>";
 
@@ -140,12 +145,13 @@ document.addEventListener('click', e => {
       ingrStr += `<p class = "ingredientText">${e.name}</p>`
     });
     orderIngredients.innerHTML = ingrStr;
+    orderTimeCooking.innerHTML = `<h2>Заказ еще в обработке</h2>`;
+    orderReview.innerHTML = "";
   } else if (el.parentNode.classList.value === "readyOrderContainer") {
-    orderId.innerHTML = `<h2>Заказ номер ${completedOrderContainer[completedOrderContainer.findIndex((e) => {
+    orderId.innerHTML = `<h1>Заказ номер ${completedOrderContainer[completedOrderContainer.findIndex((e) => {
       if (e.clientName === el.id) {
         return e;
-      }
-    })].clientName}</h2>`;
+      }})].clientName}</h1>`;
 
     let ingrStr = "<h2>Ингридиенты</h2>";
 
@@ -157,6 +163,29 @@ document.addEventListener('click', e => {
       ingrStr += `<p class = "ingredientText">${e.name}</p>`
     });
     orderIngredients.innerHTML = ingrStr;
+
+    orderTimeCooking.innerHTML = `<h2>Заказ готовился ${completedOrderContainer[completedOrderContainer.findIndex((e) => {
+      if (e.clientName === el.id) {
+        return e;
+      }})].orderPreparationTime} секунд</h2>`
+
+      if (completedOrderContainer[completedOrderContainer.findIndex((e) => {
+        if (e.clientName === el.id) {
+          return e;
+        }})].orderPreparationTime <= 20) {
+        orderReview.innerHTML = "<h2>Клиент доволен</h2>";
+        orderReview.classList.add('goodReview');
+        if (orderReview.classList.length > 2) {
+          orderReview.classList.toggle("badReview");
+        }
+      } else {
+        orderReview.innerHTML = "<h2>Клиент разочарован</h2>";
+        orderReview.classList.add('badReview');
+
+        if (orderReview.classList.length > 2) {
+          orderReview.classList.toggle("goodReview");
+        }
+      }
   }
 })
 
@@ -172,7 +201,7 @@ function returnClient(client) {
 function renderInfo() {
   cookCount.innerHTML = `Поваров в работе: ${cookContainer.length}`;
   orderCount.innerHTML = `Размер очереди: ${clientContainer.length}`;
-
+  
   queue.innerHTML = `${clientContainer.map((e) => `<p class = "text" id = ${e.clientName}>${e.clientName}</p>`).join(' ')}`;
   process.innerHTML = `${performanceContainer.map((e) => `<p class = "text" id = ${e.clientName}>${e.clientName}</p>`).join(' ')}`;
   readyOrder.innerHTML = `${completedOrderContainer.map((e) => `<p class = "text" id = ${e.clientName}>${e.clientName}</p>`).join(' ')}`;

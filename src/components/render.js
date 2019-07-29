@@ -76,8 +76,8 @@ export default function render() {
     const orderReviewContainder = document.createElement('div');
     const orderId = document.createElement('div');
     const orderIngredients = document.createElement('div');
-    const orderTimeCooking = document.createElement('p');
-    const orderReview = document.createElement('p');
+    const orderTimeCooking = document.createElement('div');
+    const orderReview = document.createElement('div');
 
     orderInfoWrap.classList.add('orderInfoWrap');
     orderInfoContainer.classList.add('orderInfoContainer');
