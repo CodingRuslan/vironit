@@ -117,7 +117,10 @@ body {
       body .generalWrapper .orderInfoWrap .orderInfoContainer {
         grid-row: 1 / 2;
         width: 100%;
-        background-color: aliceblue; }
+        background-image: url(4b9843c62ee8870fd7a27a3745b88718.jpg);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat; }
         body .generalWrapper .orderInfoWrap .orderInfoContainer .orderId {
           width: 90%;
           height: 50px;
@@ -130,10 +133,6 @@ body {
             margin: 0; }
         body .generalWrapper .orderInfoWrap .orderInfoContainer .orderIngredients {
           text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
-          background-image: url(4b9843c62ee8870fd7a27a3745b88718.jpg);
-          background-position: center;
-          background-size: cover;
-          background-repeat: no-repeat;
           height: 100%;
           margin: 5px auto;
           text-align: center; }
