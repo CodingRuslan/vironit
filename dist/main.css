@@ -119,19 +119,20 @@ body {
         width: 100%;
         background-color: aliceblue; }
         body .generalWrapper .orderInfoWrap .orderInfoContainer .orderId {
-          background-color: #3ef0f0;
           width: 90%;
           height: 50px;
           margin: 5px auto;
           text-align: center;
-          color: red; }
-          body .generalWrapper .orderInfoWrap .orderInfoContainer .orderId h2 {
+          color: red;
+          text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00; }
+          body .generalWrapper .orderInfoWrap .orderInfoContainer .orderId h1 {
             padding: 10px;
             margin: 0; }
         body .generalWrapper .orderInfoWrap .orderInfoContainer .orderIngredients {
           text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
           background-image: url(4b9843c62ee8870fd7a27a3745b88718.jpg);
           background-position: center;
+          background-size: cover;
           background-repeat: no-repeat;
           height: 100%;
           margin: 5px auto;
@@ -146,7 +147,17 @@ body {
       body .generalWrapper .orderInfoWrap .orderReviewContainder {
         grid-row: 2 / 3;
         width: 100%;
-        background-color: beige; }
+        background-color: white;
+        text-align: center;
+        text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00; }
+        body .generalWrapper .orderInfoWrap .orderReviewContainder h2 {
+          margin: 0;
+          padding: 10px;
+          font-size: xx-large; }
+        body .generalWrapper .orderInfoWrap .orderReviewContainder .goodReview {
+          text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #00ff15, 0 -10px 20px #ff8000, 0 -18px 40px #00ff9d; }
+        body .generalWrapper .orderInfoWrap .orderReviewContainder .badReview {
+          text-shadow: 0 -1px 4px #FFF, 0 -2px 10px red, 0 -10px 20px #ff8000, 0 -18px 40px #F00; }
 
 
 /*# sourceMappingURL=main.css.map*/
