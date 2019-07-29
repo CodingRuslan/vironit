@@ -161,10 +161,12 @@ body {
       .orderInfoContainer {
         grid-row: 1 / 2;
         width: 100%;
-        background-color: aliceblue;
+        background-image: url('../img/orderBack.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
 
         .orderId {
-          // background-color: rgb(62, 240, 240);
           width: 90%;
           height: 50px;
           margin: 5px auto;
@@ -180,10 +182,7 @@ body {
 
         .orderIngredients {
           text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
-          background-image: url('../img/orderBack.jpg');
-          background-position: center;
-          background-size: cover;
-          background-repeat: no-repeat;
+
           height: 100%;
           margin: 5px auto;
           text-align: center;
