@@ -30,7 +30,7 @@ function(err, results) {
         setTimeout(() => {
             console.log('Order is ready');
             con.query("UPDATE `pizzadb`.`clientOrder` SET `orderDone` = '1' WHERE (`clientId` = '1');");
-            res.send('1 заказ готов')
+            return res.send('1 заказ готов')
         }, results * 1000);
         console.log(results);
     });
