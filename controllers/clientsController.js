@@ -1,5 +1,4 @@
 const Client = require('../models/clientModel');
-const async = require('async');
 
 exports.index = function(req, res) {
     Client.getAllClient(function (err, client) {

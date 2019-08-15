@@ -1,0 +1,26 @@
+extends layout
+
+block sidebar
+    ul(class='sidebar-nav')
+        li
+            a(href='/') Home
+        li
+            a(href='/orders') All cooks
+
+block content
+    h2= message + ' ' + id
+    form(method='POST' action='/orders/' + id + '/update')
+        div.form-group
+            label clientId
+            input(type='number' name='clientId'  required=true)
+            br
+            label cookId
+            input(type='number' name='cookId' required=true)
+            br
+            label orderDone
+            input(type='number' min=0 max=1 name='orderDone' required=true)
+            br
+            label timeCooking
+            input(type='number' name='timeCooking' required=true)
+            br
+            input(type='submit', value='update')
