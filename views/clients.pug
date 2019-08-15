@@ -6,13 +6,11 @@ block sidebar
             a(href='/') Home
         li
             a(href='/clients/create') Create clients
-        li
-            a(href='/clients/update') Update cooks
-        li
-            a(href='/clients/delete') Delete orders
+
 
 block content
     h2= message
     ul
-        each el, index in val
-            li= index + ': ' + el.name
+        each el in val
+            a(href='/clients/' + el.idclient)
+                li= el.idclient + ': ' + el.name

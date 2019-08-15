@@ -21,12 +21,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-//con.query("SELECT * FROM ingredients;", function (err, result) {
-  //if (err) throw err;
- // console.log(result[1].name)});
-
 app.use('/', indexRouter);
 app.use('/neworder', newOrderRouter);
 app.use('/clients', clientsRouter);
