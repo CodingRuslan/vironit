@@ -1,0 +1,16 @@
+extends layout
+
+block sidebar
+    ul(class='sidebar-nav')
+        li
+            a(href='/') Home
+        li
+            a(href='/ingredients/create') Create ingredient
+
+
+block content
+    h2= message
+    ul
+        each el in val
+            a(href='/ingredients/' + el.idingredients)
+                li= 'id: ' +  el.idingredients + ': ' + ' name: ' + el.name + ' timeCook: ' + el.timeCook

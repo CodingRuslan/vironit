@@ -1,0 +1,15 @@
+extends layout
+
+block sidebar
+    ul(class='sidebar-nav')
+        li
+            a(href='/') Home
+        li
+            a(href='/ingredients') All ingredients
+
+block content
+    h2= message + ' ' + id
+    if flag
+        form(method='POST' action='/ingredients/' + id + '/delete')
+            div.form-group
+                input(type='submit', value='delete')

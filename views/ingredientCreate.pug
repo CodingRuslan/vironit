@@ -1,0 +1,20 @@
+extends layout
+
+block sidebar
+    ul(class='sidebar-nav')
+        li
+            a(href='/') Home
+        li
+            a(href='/ingredients') All ingredient
+
+block content
+    h2= message
+    form(method='POST' action='/ingredients/create')
+        div.form-group
+            label name
+            input(type='text' name='name'  required=true)
+            br
+            label timeCook
+            input(type='number' min= 1 name='timeCook' required=true)
+            br
+            input(type='submit', value='create')

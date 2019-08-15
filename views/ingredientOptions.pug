@@ -1,0 +1,18 @@
+extends layout
+
+block sidebar
+    ul(class='sidebar-nav')
+        li
+            a(href='/') Home
+        li
+            a(href='/ingredients') All ingredients
+        li
+            a(href='/ingredients/' + `${id}` + '/update') Update ingredient
+        li
+            a(href='/ingredients/' + `${id}` + '/delete') Delete ingredient
+
+block content
+    h1= message
+    h2= 'id ингредиента: ' + id
+    h2= 'name: ' + info[0].name
+    h2= 'timeCook: ' +  info[0].timeCook
