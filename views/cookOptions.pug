@@ -1,0 +1,18 @@
+extends layout
+
+block sidebar
+    ul(class='sidebar-nav')
+        li
+            a(href='/') Home
+        li
+            a(href='/cooks') All cooks
+        li
+            a(href='/cooks/' + `${id}` + '/update') Update cook
+        li
+            a(href='/cooks/' + `${id}` + '/delete') Delete cook
+
+block content
+    h1= message
+    h2= 'Id повара: ' + id
+    h2= 'Имя повара: ' + info[0].name
+    h2= 'Статус повара: ' +  info[0].isFree

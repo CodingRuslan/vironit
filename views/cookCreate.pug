@@ -1,0 +1,18 @@
+extends layout
+
+block sidebar
+    ul(class='sidebar-nav')
+        li
+            a(href='/') Home
+        li
+            a(href='/cooks') All cooks
+
+block content
+    h2= message
+    form(method='POST' action='/cooks/create')
+        div.form-group
+            input(type='text' name='name' placeholder='имя повара' required=true)
+            br
+            input(type='number' min=0 max=1 name='isFree' required=true)
+            br
+            input(type='submit', value='create')

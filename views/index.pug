@@ -1,0 +1,24 @@
+extends layout
+
+block sidebar
+    ul(class='sidebar-nav')
+        li
+            a(href='/') Home
+        li
+            a(href='/clients') All clients
+        li
+            a(href='/cooks') All cooks
+        li
+            a(href='/orders') All orders
+        li
+            a(href='/ingredients') All ingredients
+        li
+            a(href='/orderIngredients') All order ingredients
+
+block content
+    h2= message
+    form(method='GET' action='/neworder')
+        div.form-group
+            label(for='name') Make a new order:
+            br
+            input(type='submit', value='do it')

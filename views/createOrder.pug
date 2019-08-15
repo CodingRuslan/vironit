@@ -1,0 +1,40 @@
+extends layout
+
+block content
+    h1= message
+    form(method='POST' action='/neworder')
+        div.form-group
+            label(for='base') base
+            input#base(type='checkbox', name='1')
+            br
+            label(for='chicken') chicken
+            input#chicken(type='checkbox', name='2')
+            br
+            label(for='pepperoni') pepperoni
+            input#pepperoni(type='checkbox', name='3')
+            br
+            label(for='pineapple') pineapple
+            input#pineapple(type='checkbox', name='4')
+            br
+            label(for='cheese') cheese
+            input#cheese(type='checkbox', name='5')
+            br
+            label(for='ham') ham
+            input#ham(type='checkbox', name='6')
+            br
+            label(for='shrimp') shrimp
+            input#shrimp(type='checkbox', name='7')
+            br
+            label(for='mushrooms') mushrooms
+            input#mushrooms(type='checkbox', name='8')
+            br
+            label(for='pepper') pepper
+            input#pepper(type='checkbox', name='9')
+            br
+            label(for='olives') olives
+            input#olives(type='checkbox', name='10')
+            br
+            label(for='tomatoes') tomatoes
+            input#tomatoes(type='checkbox', name='11')
+            br
+        input(type='submit', value='order')

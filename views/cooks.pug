@@ -1,0 +1,16 @@
+extends layout
+
+block sidebar
+    ul(class='sidebar-nav')
+        li
+            a(href='/') Home
+        li
+            a(href='/cooks/create') Create cooks
+
+
+block content
+    h2= message
+    ul
+        each el in val
+            a(href='/cooks/' + el.idcook)
+                li= el.idcook + ': ' + el.name + ' isFree: ' +  el.isFree

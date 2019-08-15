@@ -1,0 +1,17 @@
+extends layout
+
+block sidebar
+    ul(class='sidebar-nav')
+        li
+            a(href='/') Home
+        li
+            a(href='/clients') All clients
+        li
+            a(href='/clients/' + `${id}` + '/update') Update client
+        li
+            a(href='/clients/' + `${id}` + '/delete') Delete client
+
+block content
+    h1= message
+    h2= 'Id клиента: ' + id
+    h2= 'Имя клиента: ' + name
