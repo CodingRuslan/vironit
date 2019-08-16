@@ -46,6 +46,7 @@ exports.update_ingredient_get = function (req, res) {
 };
 
 exports.update_ingredient_post = function (req, res) {
+    console.log(req.params);
     Ingredient.updateById(req.params.idingredients, new Ingredient(req.body), function(err, ingredient) {
         if (err)
             res.send(err);

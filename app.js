@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const con = require('./db');
+const Cookies = require('cookies');
+const COOKIES_KEY = ["This is cookies key"];
 
 const indexRouter = require('./routes/index');
 const newOrderRouter = require('./routes/newOrder');
@@ -12,6 +14,8 @@ const cookRouter = require('./routes/cookRouter');
 const orderRouter = require('./routes/ordersRouter');
 const ingredientRouter = require('./routes/ingredientRouter');
 const registrationRouter = require('./routes/registrationRouter');
+const loginRouter = require('./routes/loginRouter');
+const logOutRouter = require('./routes/logOutRouter');
 
 const app = express();
 
@@ -27,6 +31,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/registration', registrationRouter);
+app.use('/login', loginRouter);
+app.use('/logout', logOutRouter);
+
+app.use(verifyAuthorization);
 
 app.use('/neworder', newOrderRouter);
 app.use('/clients', clientsRouter);
@@ -49,5 +57,17 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+function getToken(req, res) {
+  let cookies = new Cookies(req, res, {keys: COOKIES_KEY});
+  return cookies.get('token', {signed: true});
+}
+
+function verifyAuthorization(req, res, next) {
+  if (getToken(req, res)) next();
+  else {
+    res.redirect('/login')
+  }
+}
 
 module.exports = app;
