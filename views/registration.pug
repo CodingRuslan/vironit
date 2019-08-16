@@ -1,0 +1,18 @@
+extends layout
+
+block sidebar
+    ul(class='sidebar-nav')
+        li
+            a(href='/') Home
+
+block content
+    h2= message
+    form(method='POST' action='/registration')
+        div.form-group
+            label login
+            input(type='text' name='login' placeholder='login' required=true)
+            br
+            label password
+            input(type='password' name='password' placeholder='password' required=true)
+            br
+            input(type='submit', value='create')

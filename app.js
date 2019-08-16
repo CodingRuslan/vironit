@@ -11,6 +11,7 @@ const clientsRouter = require('./routes/clientsRouter');
 const cookRouter = require('./routes/cookRouter');
 const orderRouter = require('./routes/ordersRouter');
 const ingredientRouter = require('./routes/ingredientRouter');
+const registrationRouter = require('./routes/registrationRouter');
 
 const app = express();
 
@@ -25,6 +26,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/registration', registrationRouter);
+
 app.use('/neworder', newOrderRouter);
 app.use('/clients', clientsRouter);
 app.use('/cooks', cookRouter);

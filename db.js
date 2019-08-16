@@ -13,12 +13,22 @@ con.connect(function(err) {
     if (err) throw err;
     console.log("the base is connected");
     async.series([
-        function(callback) {
-            con.query("CREATE DATABASE IF NOT EXISTS  pizzadb", function (err) {
-                if (err) throw err;
-            });
+        // function(callback) {
+        //     con.query("CREATE DATABASE IF NOT EXISTS  pizzadb", function (err) {
+        //         if (err) throw err;
+        //     });
+        // },
+        function() {
+            con.query("CREATE TABLE IF NOT EXISTS `pizzadb`.`users` (\n" +
+                "  `idusers` INT NOT NULL AUTO_INCREMENT,\n" +
+                "  `login` VARCHAR(45) NULL,\n" +
+                "  `pass` VARCHAR(65) NULL,\n" +
+                "  `token` VARCHAR(45) NULL,\n" +
+                "  PRIMARY KEY (`idusers`));", function (err) {
+                if (err) throw(err)
+            })
         },
-        function(callback) {
+        function() {
             con.query("CREATE TABLE IF NOT EXISTS `pizzadb`.`client` (\n" +
                 "  `idclient` INT NOT NULL AUTO_INCREMENT,\n" +
                 "  `name` VARCHAR(45) NULL,\n" +
